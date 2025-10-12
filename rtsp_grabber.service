@@ -1,0 +1,20 @@
+[Unit]
+Description=Grabador RTSP horario (Kamasys Technologies)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=%i
+WorkingDirectory=/opt/rtsp_grabber
+EnvironmentFile=/etc/data.env
+ExecStart=/usr/bin/python3 /opt/rtsp_grabber/grabador_ip.py
+Restart=always
+RestartSec=5
+
+# Logs en journald
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
